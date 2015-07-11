@@ -21,9 +21,10 @@ application/static/.sass-cache/*
 /node_modules/*
 public_html
 public
-migrations/*
 secret.json
 /assets/style.min.css
 /assets/main.min.js
 /assets/css/style.css
 /assets/modernizr.min.js
+
+/application/version/migrations/*
