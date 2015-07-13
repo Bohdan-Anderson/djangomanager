@@ -1,0 +1,13 @@
+<html>
+<head>
+	<title>Projects</title>
+</head>
+<body>
+	<ul>
+		{% for project in projects %}
+			<li><a href="/project/{{project.slug}}/">{{project}}</a></li>
+			{% endfor %}
+			<li><a href="/new">add new project</a></li>
+	</ul>
+</body>
+</html>
