@@ -1,1 +1,10 @@
-{{data|safe}}>{% csrf_token %}
+{% load staticfiles %}
+{{data|safe}}{% csrf_token %}
+<ul id="editor_menue">
+	<li id="editor_edit">edit</li>
+	<li id="editor_editurl">edit url</li>
+	<li id="editor_clone_bellow">clone bellow</li>
+	<li id="editor_add_above">clone above</li>
+</ul>
+<script type="text/javascript" src="{% static "js/lib/jquery.min.js"%}"></script>
+<script type="text/javascript" src="{% static "js/editor.js"%}"></script>

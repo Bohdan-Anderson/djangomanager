@@ -16,7 +16,6 @@ def home(request):
 	return render(request, 'home.html', {"projects":models.Project.objects.all()})
 
 def project_edit(request, url):
-
 	url = url.split("/")
 	if len(url) < 2:
 		#django redirect to url with / at end!
@@ -60,13 +59,13 @@ def edit_file(project,fileName,count,data):
 def render_to_request(request,project,fileName):
 	theFile = getFile(project,fileName)
 	if(".html" in fileName):		
-		soup = BeautifulSoup(theFile.read(), 'html.parser')
-		theFile.close()
+		# soup = BeautifulSoup(theFile.read(), 'html.parser')
+		# theFile.close()
 
-		editor = soup.new_tag('script',src="/static/js/editor.js",type="text/javascript")
-		csrf = soup.new_tag('input', id='csrftoken')
-		soup.body.append(editor)
-		return render(request, 'blank.html', {"data":str(soup)})
+		# editor = soup.new_tag('script',src="/static/js/editor.js",type="text/javascript")
+		# csrf = soup.new_tag('input', id='csrftoken')
+		# soup.body.append(editor)
+		return render(request, 'blank.html', {"data":str(theFile.read())})
 	return HttpResponse(theFile.read())
 
 
@@ -132,3 +131,5 @@ def unzip(source_filename, dest_dir):
 			if(member.filename.split('/').pop()): 
 				member.filename = member.filename.split('/').pop() 
 			zf.extract(member, path)
+
+

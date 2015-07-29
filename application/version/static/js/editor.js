@@ -1,12 +1,17 @@
 var EDITOR = {
+	menue: null,
 	init: function() {
 		// EDITOR.elements = $(".rw_editor");
 		// console.log(EDITOR.elements);
 		EDITOR.cookies();
 		$(".rw_editor").each(EDITOR.bindCount);
 		$(".rw_editor").click(EDITOR.click);
+		$(".rw_editor").mouseover(EDITOR.mouseOver);
+		EDITOR.menue = $("#editor_menue")[0];
 		// EDITOR.elements.mouseOver
 		$(document.body).append('<link rel="stylesheet" type="text/css" href=' + "/static/css/editorstyle.css" + '>');
+		$("a:not(.rw_editor)").click(EDITOR.allLinkClick);
+		console.log($("a:not(.rw_editor)"));
 	},
 	bindCount: function(count, element) {
 		$(element).data({
@@ -14,9 +19,16 @@ var EDITOR = {
 		})
 	},
 	click: function(event) {
+		event.preventDefault();
 		EDITOR.modal.count = $(this).data().count
 		EDITOR.modal.create(this);
-
+		return false;
+	},
+	mouseOver: function(event){
+		$(".editor_hover").removeClass("editor_hover");
+		$(this).addClass("editor_hover");
+		EDITOR.menue.style.top = $(this).offset().top+$(this).outerHeight()
+		EDITOR.menue.style.left = $(this).offset().left
 	},
 	modal: {
 		target: null,
@@ -100,6 +112,13 @@ var EDITOR = {
 				}
 			}
 		});
+	},
+	allLinkClick: function(event){
+		event.preventDefault();
+		var baseURL = window.location.href.split("/project/").pop().split("/")[0],
+		newURL = this.href.split("/").pop()
+		window.location = "/project/"+baseURL+"/"+newURL;
+		return false;
 	}
 }
 
